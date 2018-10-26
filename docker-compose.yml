@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+    php56:
+        container_name: php56
+        image: hendra1992/php_56
+        restart: always
+        volumes:
+            - "./php/v5.6:/var/www/html"
+        ports:
+            - 5656:80
+            - 553:443
+        links:
+            - mysql56
+            - mysql57
+            - pgsql93
+            - pgsql96
+    php72:
+        container_name: php72
+        image: hendra1992/php_72
+        restart: always
+        volumes:
+            - "./php/v7.2:/var/www/html"
+        ports:
+            - 7272:80
+            - 773:443
+        links:
+            - mysql56
+            - mysql57
+            - pgsql93
+            - pgsql96
+    mysql56:
+        container_name: mysql56
+        image: mysql:5.6.42
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: anugerah
+            MYSQL_DATABASE: defaultdb
+        ports:
+            - "3307:3306"
+        volumes:
+            - "./database/mysql/my.conf:/etc/mysql/conf.d/config-file.cnf"
+            - "./database/mysql/data/v5.6.42:/var/lib/mysql:rw"
+    mysql57:
+        container_name: mysql57
+        image: mysql:5.7.24
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: anugerah
+            MYSQL_DATABASE: defaultdb
+        ports:
+            - "3308:3306"
+        volumes:
+            - "./database/mysql/my.conf:/etc/mysql/conf.d/config-file.cnf"
+            - "./database/mysql/data/v5.7.24:/var/lib/mysql:rw"
+    pgsql93:
+        container_name: pgsql93
+        image: postgres:9.3.23
+        restart: always
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: anugerah
+            POSTGRES_DB: postgres
+        ports:
+            - "5433:5432"
+        volumes:
+            - "./database/postgresql/data/v9.3.23:/var/lib/postgresql/data:rw"
+    pgsql96:
+        container_name: pgsql96
+        image: postgres:9.6.10
+        restart: always
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: anugerah
+            POSTGRES_DB: postgres
+        ports:
+            - "5434:5432"
+        volumes:
+            - "./database/postgresql/data/v9.6.10:/var/lib/postgresql/data:rw"

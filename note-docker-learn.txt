@@ -1,0 +1,27 @@
+CONTOH CARA LINKING KE CONTAINER-CONTAINER LAIN :
+docker container run -d --link node1:node1 --link node2:node2 --link node3:node3 -p hostport:containerport your-image
+
+CARA MASUK KE NETWORK SHELL COMMAND :
+docker exec -it <network_name> sh
+
+CARA BUILD IMAGE DARI Dockerfile :
+
+
+
+# -- JALANKAN INI DI DIRECTORY HTDOCS PHP 5 -- #
+docker container run --name apache-php5 --restart=always -d -p 5050:80 -v $(pwd):/var/www/html hendra1992:php5
+docker container run --name apache-php5 --restart=always -d --link pgsql_v9323:db -p 5050:80 -v $(pwd):/var/www/html hendra1992:php5
+
+# -- JALANKAN INI DI DIRECTORY HTDOCS PHP 7 -- #
+docker container run --name apache-php7 --restart=always -d -p 7070:80 -v $(pwd):/var/www/html hendra1992:php7
+docker container run --name apache-php7 --restart=always -d --link pgsql_v9323:db --net host -p 7070:80 -v $(pwd):/var/www/html hendra1992:php7
+
+
+
+
+
+
+
+docker run --link my_app_mq_1:mq --link my_app_db_1:db -it --net default worker 
+
+docker run --link my_app_mq_1:mq --link my_app_db_1:db -it --net myapp_default worker 
