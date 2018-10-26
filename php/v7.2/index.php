@@ -8,6 +8,9 @@
 </head>
 
 <body>
-  <h2><?php echo 'Hello Docker - PHP 7!'; ?></h2>
+  <!-- <h2><?php echo 'Hello Docker - PHP 7!'; ?></h2> -->
+  <?php
+  echo phpinfo();
+  ?>
 </body>
 </html>
