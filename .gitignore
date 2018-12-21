@@ -1,7 +1,7 @@
-php/v5.6/rsmm_v2
 php/v5.6/htdocs/rsmm
 database/mongodb/data
 database/mysql/data
 database/postgresql/data
 php/v5.6/.DS_Store
 php/v7.2/htdocs/.DS_Store
+php/v5.6/htdocs/rsmm_v2
