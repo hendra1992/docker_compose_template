@@ -1,2 +1,5 @@
 php/v5.6/rsmm_v2
 php/v5.6/htdocs/rsmm
+database/mongodb/data
+database/mysql/data
+database/postgresql/data
