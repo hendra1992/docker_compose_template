@@ -67,7 +67,7 @@ services:
             - "./database/postgresql/data/v9.3.23:/var/lib/postgresql/data:rw"
     pgsql96:
         container_name: pgsql96
-        image: postgres:9.6.10
+        image: postgres:9.6.19
         restart: always
         environment:
             POSTGRES_USER: root
@@ -76,4 +76,4 @@ services:
         ports:
             - "5434:5432"
         volumes:
-            - "./database/postgresql/data/v9.6.10:/var/lib/postgresql/data:rw"
+            - "./database/postgresql/data/v9.6.19:/var/lib/postgresql/data:rw"

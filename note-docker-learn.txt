@@ -44,3 +44,17 @@ cat your_dump.sql | docker exec -i your-db-container psql -U postgres
 docker run --link my_app_mq_1:mq --link my_app_db_1:db -it --net default worker 
 
 docker run --link my_app_mq_1:mq --link my_app_db_1:db -it --net myapp_default worker 
+
+
+
+
+
+# ALL ABOUT DISK SPACE OF DOCKER CONTAINER OR IMAGES #
+
+https://www.digitalocean.com/community/questions/how-to-check-the-disk-usage-of-all-running-docker-containers
+
+https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
+
+https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes#a-docker-cheat-sheet
+
+https://stackoverflow.com/questions/27853571/why-is-docker-image-eating-up-my-disk-space-that-is-not-used-by-docker
