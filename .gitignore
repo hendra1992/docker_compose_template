@@ -1,8 +1,6 @@
-php/v5.6/htdocs/rsmm
+php/v5.6/htdocs
+php/v7.2/htdocs
 database/mongodb/data
 database/mysql/data
 database/postgresql/data
-php/v5.6/.DS_Store
-php/v7.2/htdocs/.DS_Store
-php/v5.6/htdocs/rsmm_v2
 .DS_Store
