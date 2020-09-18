@@ -6,7 +6,7 @@ services:
         image: hendra1992/php_56
         restart: always
         volumes:
-            - "./php/v5.6:/var/www/html"
+            - "./php/v5.6/htdocs:/var/www/html"
         ports:
             - 5656:80
             - 553:443
@@ -15,12 +15,13 @@ services:
             - mysql57
             - pgsql93
             - pgsql96
+            - mongo
     php72:
         container_name: php72
         image: hendra1992/php_72
         restart: always
         volumes:
-            - "./php/v7.2:/var/www/html"
+            - "./php/v7.2/htdocs:/var/www/html"
         ports:
             - 7272:80
             - 773:443
@@ -29,13 +30,14 @@ services:
             - mysql57
             - pgsql93
             - pgsql96
+            - mongo
     mysql56:
         container_name: mysql56
         image: mysql:5.6.42
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: anugerah
-            MYSQL_DATABASE: defaultdb
+            MYSQL_DATABASE: mysql
         ports:
             - "3307:3306"
         volumes:
@@ -47,7 +49,7 @@ services:
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: anugerah
-            MYSQL_DATABASE: defaultdb
+            MYSQL_DATABASE: mysql
         ports:
             - "3308:3306"
         volumes:
@@ -63,11 +65,9 @@ services:
             POSTGRES_DB: postgres
         ports:
             - "5433:5432"
-        volumes:
-            - "./database/postgresql/data/v9.3.23:/var/lib/postgresql/data:rw"
     pgsql96:
         container_name: pgsql96
-        image: postgres:9.6.19
+        image: postgres:9.6.10
         restart: always
         environment:
             POSTGRES_USER: root
@@ -75,5 +75,15 @@ services:
             POSTGRES_DB: postgres
         ports:
             - "5434:5432"
+    mongo:
+        container_name: mongo
+        image: mongo:latest
+        restart: always
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=anugerah
+        ports:
+            - "27018:27017"
         volumes:
-            - "./database/postgresql/data/v9.6.19:/var/lib/postgresql/data:rw"
+            - "./database/mongodb/data:/data/db"
+        command: mongod

@@ -1,73 +1,58 @@
 version: '3'
-
 services:
     php56:
         container_name: php56
-        image: hendra1992/php_56
+        image: php:5.6.40-fpm
         restart: always
         volumes:
-            - "./php/v5.6/htdocs:/var/www/html"
+            - "./php/v5.6:/var/www/html"
         ports:
             - 5656:80
             - 553:443
         links:
             - mysql56
             - mysql57
-            - pgsql93
             - pgsql96
-            - mongo
-    php72:
-        container_name: php72
-        image: hendra1992/php_72
+    php74:
+        container_name: php74
+        image: php:7.4.9-fpm
         restart: always
         volumes:
-            - "./php/v7.2/htdocs:/var/www/html"
+            - "./php/v7.4:/var/www/html"
         ports:
-            - 7272:80
+            - 7474:80
             - 773:443
         links:
             - mysql56
             - mysql57
-            - pgsql93
             - pgsql96
-            - mongo
     mysql56:
         container_name: mysql56
-        image: mysql:5.6.42
+        image: mysql:5.6.49
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: anugerah
-            MYSQL_DATABASE: mysql
+            MYSQL_DATABASE: defaultdb
         ports:
             - "3307:3306"
         volumes:
             - "./database/mysql/my.conf:/etc/mysql/conf.d/config-file.cnf"
-            - "./database/mysql/data/v5.6.42:/var/lib/mysql:rw"
+            - "./database/mysql/data/v5.6.49:/var/lib/mysql:rw"
     mysql57:
         container_name: mysql57
-        image: mysql:5.7.24
+        image: mysql:5.7.31
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: anugerah
-            MYSQL_DATABASE: mysql
+            MYSQL_DATABASE: defaultdb
         ports:
             - "3308:3306"
         volumes:
             - "./database/mysql/my.conf:/etc/mysql/conf.d/config-file.cnf"
-            - "./database/mysql/data/v5.7.24:/var/lib/mysql:rw"
-    pgsql93:
-        container_name: pgsql93
-        image: postgres:9.3.23
-        restart: always
-        environment:
-            POSTGRES_USER: root
-            POSTGRES_PASSWORD: anugerah
-            POSTGRES_DB: postgres
-        ports:
-            - "5433:5432"
+            - "./database/mysql/data/v5.7.31:/var/lib/mysql:rw"
     pgsql96:
         container_name: pgsql96
-        image: postgres:9.6.10
+        image: postgres:9.6.19
         restart: always
         environment:
             POSTGRES_USER: root
@@ -75,15 +60,5 @@ services:
             POSTGRES_DB: postgres
         ports:
             - "5434:5432"
-    mongo:
-        container_name: mongo
-        image: mongo:latest
-        restart: always
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=root
-            - MONGO_INITDB_ROOT_PASSWORD=anugerah
-        ports:
-            - "27018:27017"
         volumes:
-            - "./database/mongodb/data:/data/db"
-        command: mongod
+            - "./database/postgresql/data/v9.6.19:/var/lib/postgresql/data:rw"
